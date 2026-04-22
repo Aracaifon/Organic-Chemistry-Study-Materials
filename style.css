@@ -1,0 +1,341 @@
+/* =========================
+   GLOBAL PAGE STYLING
+   ========================= */
+
+/* Sets default font, page spacing, and background color */
+body {
+  font-family: Arial, sans-serif;
+
+  /* Outer spacing around entire page */
+  margin: 20px;
+
+  /* Light gray background behind all content */
+  background-color: #f7f7f7;
+}
+
+/* Centers main title */
+h1 {
+  text-align: center;
+}
+
+
+/* =========================
+   MAIN LAYOUT CONTAINER
+   ========================= */
+
+/*
+.controls is the MAIN layout wrapper.
+
+It controls the two-column layout:
+- left: filter-section
+- right: direct-section
+
+This is the key structural layout rule of the UI.
+*/
+.controls {
+  display: flex;
+
+  /* pushes left and right sections apart */
+  justify-content: space-between;
+
+  /* aligns both sections at top */
+  align-items: flex-start;
+
+  /* spacing between left and right panels */
+  gap: 40px;
+
+  /* spacing below controls before cards */
+  margin-bottom: 20px;
+}
+
+
+/* =========================
+   LEFT SIDE FILTER PANEL
+   ========================= */
+
+/*
+Column layout for filters:
+- chapter
+- regio
+- stereo
+- productType
+*/
+.filter-section {
+  display: flex;
+  flex-direction: column;
+
+  /* spacing between each dropdown/button */
+  gap: 10px;
+}
+
+
+/* =========================
+   RIGHT SIDE DIRECT SEARCH
+   ========================= */
+
+/*
+Column layout for chapter → reaction selection
+*/
+.direct-section {
+  display: flex;
+  flex-direction: column;
+
+  gap: 10px;
+
+  /* aligns text and dropdowns to the right side */
+  text-align: right;
+}
+
+
+/* =========================
+   SECTION HEADERS
+   ========================= */
+
+/*
+Styling for both left and right section headers ("Sort by Filter", "Direct Search")
+*/
+.filter-section h3,
+.direct-section h3 {
+  margin: 0 0 10px 0;
+
+  font-size: 14px;
+  font-weight: bold;
+}
+
+
+/* Forces dropdowns in direct section to align right edge */
+.direct-section select {
+  align-self: flex-end;
+}
+
+
+/* =========================
+   BASIC FORM CONTROLS
+   ========================= */
+
+/* Shared styling for all dropdowns and buttons */
+select, button {
+  padding: 6px;
+  font-size: 14px;
+}
+
+
+/* =========================
+   RESULTS GRID (CARD LAYOUT)
+   ========================= */
+
+/*
+This is the layout engine for reaction cards.
+
+IMPORTANT:
+- uses CSS Grid
+- auto-fills columns based on screen width
+- each card is minimum 250px wide
+*/
+#results {
+  display: grid;
+
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+
+  gap: 15px;
+}
+
+
+/* =========================
+   REACTION CARD STYLING
+   ========================= */
+
+/*
+NOTE: You defined .card TWICE below.
+The later definition overrides this one in CSS.
+*/
+
+.card {
+  background: white;
+
+  border: 1px solid #ddd;
+
+  border-radius: 10px;
+
+  padding: 15px;
+
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+
+/* Card title spacing */
+.card h3 {
+  margin-top: 0;
+}
+
+
+/* =========================
+   TAG SYSTEM (CHAPTER / REGIO / STEREO)
+   ========================= */
+
+.tags {
+  margin: 5px 0;
+}
+
+/*
+Small pill-like labels under each reaction name
+*/
+.tag {
+  display: inline-block;
+
+  padding: 3px 8px;
+
+  margin-right: 5px;
+
+  border-radius: 5px;
+
+  background: #e0e0e0;
+
+  font-size: 12px;
+}
+
+
+/* =========================
+   IMAGES (MECHANISM DIAGRAMS)
+   ========================= */
+
+/*
+Ensures mechanism images scale to card width
+*/
+img {
+  width: 100%;
+  margin-top: 10px;
+  border-radius: 5px;
+}
+
+
+/* =========================
+   UNUSED / REDUNDANT SECTION
+   ========================= */
+
+/*
+This class is currently NOT used in your HTML:
+.direct-select
+
+It appears to be from an earlier layout version.
+*/
+.direct-select {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+
+/* =========================
+   VISIBILITY TOGGLE SYSTEM
+   ========================= */
+
+/*
+Used by JavaScript to show/hide mechanism images
+*/
+.hidden {
+  display: none;
+}
+
+
+/* =========================
+   BUTTON STYLING (FIRST VERSION)
+   ========================= */
+
+/*
+NOTE:
+You have TWO button styles:
+- button.toggle (NOT used in current JS)
+- .toggle-btn (actually used)
+
+This one is likely leftover.
+*/
+button.toggle {
+  margin-top: 10px;
+  padding: 5px;
+  font-size: 12px;
+}
+
+
+/* =========================
+   DUPLICATED CARD STYLING (IMPORTANT)
+   ========================= */
+
+/*
+⚠️ THIS OVERRIDES THE EARLIER .card BLOCK
+
+Because it appears later in the file,
+this version is what the browser actually uses.
+*/
+
+.card {
+  background: white;
+
+  border: 1px solid #ddd;
+
+  border-radius: 10px;
+
+  padding: 15px;
+
+  margin-bottom: 15px;
+
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+
+/* Second definition of card title spacing */
+.card h3 {
+  margin-top: 0;
+}
+
+
+/* Second tag styling (slightly different from earlier version) */
+.tags {
+  margin: 8px 0;
+}
+
+.tag {
+  display: inline-block;
+
+  padding: 3px 8px;
+
+  margin-right: 5px;
+
+  border-radius: 6px;
+
+  background: #e9e9e9;
+
+  font-size: 12px;
+}
+
+
+/* =========================
+   MAIN BUTTON (USED IN JS)
+   ========================= */
+
+/*
+This IS the button used in your script.js:
+class="toggle-btn"
+*/
+.toggle-btn {
+  margin-top: 10px;
+  padding: 5px 10px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+
+/* =========================
+   IMAGE (FINAL OVERRIDE)
+   ========================= */
+
+/*
+This is a second image rule.
+It overrides earlier image styling due to later position.
+*/
+img {
+  width: 100%;
+  margin-top: 10px;
+  border-radius: 6px;
+}

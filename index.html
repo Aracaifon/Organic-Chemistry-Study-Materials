@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Orgo Reaction Explorer</title>
+
+  <!-- Links your external CSS file that controls all styling (layout, colors, spacing, etc.) -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- Main page title shown at the top of the app -->
+  <h1>Orgo Reaction Explorer</h1>
+
+  <!--
+    MASTER CONTAINER for all controls (filters + direct search).
+    This is likely styled as a flexbox in your CSS to create left/right layout.
+  -->
+  <div class="controls">
+
+    <!-- ========================= -->
+    <!-- LEFT SIDE: FILTER SYSTEM  -->
+    <!-- ========================= -->
+    <div class="filter-section">
+
+      <!-- Section title for dropdown-based filtering -->
+      <h3>Sort by Filter</h3>
+
+      <!-- CHAPTER FILTER -->
+      <!--
+        Dropdown for selecting chapter (e.g., 12, 13, etc.)
+        JS listens to this element via id="chapter"
+        and filters reactions accordingly.
+      -->
+      <select id="chapter">
+        <option value="">All Chapters</option>
+      </select>
+
+      <!-- REGIOCHEMISTRY FILTER -->
+      <!--
+        Filters reactions by regioselectivity:
+        e.g. Markovnikov, Anti-Markovnikov, None
+      -->
+      <select id="regio">
+        <option value="">All Regiochemistry</option>
+      </select>
+
+      <!-- STEREOCHEMISTRY FILTER -->
+      <!--
+        Filters reactions by stereochemical outcome:
+        Syn, Anti, Both, etc.
+      -->
+      <select id="stereo">
+        <option value="">All Stereochemistry</option>
+      </select>
+
+      <!-- PRODUCT TYPE FILTER -->
+      <!--
+        NEW SYSTEM:
+        Filters based on atoms/groups added across the alkene (H, OH, X, O, etc.)
+        This is dynamically populated in script.js
+      -->
+      <select id="productType">
+        <option value="">All Product Types</option>
+      </select>
+
+      <!-- Resets all filters back to default state -->
+      <button onclick="resetFilters()">Reset</button>
+
+    </div>
+
+    <!-- ============================ -->
+    <!-- RIGHT SIDE: DIRECT SEARCH   -->
+    <!-- ============================ -->
+    <div class="direct-section">
+
+      <!-- Section title for targeted selection workflow -->
+      <h3>Direct Search</h3>
+
+      <!--
+        Step 1 dropdown:
+        Choose a chapter first.
+        This triggers population of the second dropdown.
+      -->
+      <select id="chapterSelect">
+        <option value="">Select Chapter</option>
+        <option value="12">Chapter 12</option>
+      </select>
+
+      <!--
+        Step 2 dropdown:
+        Populated dynamically based on selected chapter.
+        Initially hidden using CSS class "hidden"
+      -->
+      <select id="reactionSelect" class="hidden">
+        <option value="">Select Reaction</option>
+      </select>
+
+    </div>
+
+  </div>
+
+  <!--
+    MAIN OUTPUT AREA:
+    JavaScript dynamically injects "reaction cards" here.
+  -->
+  <div id="results"></div>
+
+  <!-- Loads your dataset (reactions array lives here) -->
+  <script src="data.js"></script>
+
+  <!-- Loads all interactivity (filters, rendering, events, etc.) -->
+  <script src="script.js"></script>
+
+</body>
+</html>
